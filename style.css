@@ -1,0 +1,169 @@
+body {
+  min-width: 600px;
+  min-height: 400px;
+  margin-block: 0;
+  padding-block: 0;
+}
+
+#main_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+  font-size: 70px;
+}
+
+#container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 10px;
+}
+img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 7px;
+  border: 1px solid black;
+  position: relative;
+}
+.imgContainer {
+  cursor: pointer;
+}
+
+#container > .imgContainer:hover img {
+  opacity: 0.7;
+  background-size: 5px 5px;
+  filter: invert(1);
+}
+
+#container > .imgContainer:hover {
+  position: relative;
+}
+
+#container > .imgContainer:hover::before {
+  content: "Download";
+  position: absolute;
+  z-index: 20000;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  color: white;
+  background-color: rgb(136, 136, 136);
+  padding: 5px;
+  border-radius: 5px;
+}
+#colors {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+h2 {
+  margin: 0;
+  padding: 0;
+}
+#background,
+#text,
+#border {
+  display: flex;
+  flex-direction: column;
+  margin-block: 10px;
+  gap: 5px;
+}
+#colors {
+  margin-block: 20px;
+}
+
+.div_color_container:hover {
+  position: relative;
+  opacity: 0.8;
+}
+
+.div_color_container:hover::before {
+  content: "Copy";
+  position: absolute;
+  right: 10px;
+  opacity: 0.7;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Dark Theme Button */
+
+.dark-button {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.dark-button[data-state="downloading"] {
+  animation: fadeInOut 2s ease-in-out infinite;
+}
+
+.dark-button:hover {
+  background-color: #444;
+  border-color: #666;
+}
+
+.dark-button:active {
+  background-color: #222;
+  border-color: #444;
+}
+
+.dark-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+}
+
+/* Optional: Additional styles for disabled state */
+.dark-button:disabled {
+  background-color: #555;
+  border-color: #777;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+#downloadAll {
+  align-self: flex-end;
+  margin-bottom: 15px;
+}
+
+#fonts_table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#fonts_table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  background-color: #f2f2f2;
+  text-align: center;
+}
+
+#fonts_table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  overflow: auto;
+}

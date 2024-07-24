@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+      "target": "es6",
+      "module": "commonjs",
+      "checkJs": true,
+      "baseUrl": ".",
+      "paths": {
+        "chrome": ["node_modules/@types/chrome"]
+      }
+    },
+    "include": ["*.js", "scripts/jsonviewer.js", "globals.d.ts", "js/imageHandler.js", "js/assetsHandler.js"]
+  }
+  

@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "uiTester",
+  "version": "1.0",
+  "description": "test web page ui",
+  "permissions": ["activeTab", "scripting", "downloads", "contextMenus"],
+  "icons": {
+    "16": "assets/icon16.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "assets/icon16.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+}

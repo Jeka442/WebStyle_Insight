@@ -4,6 +4,101 @@ async function startup() {
     chrome.scripting.executeScript({
       target: { tabId: tab.id },
       func: () => {
+        const libraries = {
+          "Tailwind CSS": [
+            /^mt-/,
+            /^p-/,
+            /^flex-/,
+            /^grid-/,
+            /^gap-/,
+            /^w-/,
+            /^h-/,
+            /^m-/,
+            /^rounded-/,
+            /^shadow-/,
+            /^font-/,
+            /^leading-/,
+            /^tracking-/,
+            /^truncate/,
+            /^overflow-/,
+            /^z-/,
+            /^inset-/,
+            /^space-/,
+            /^divide-/,
+            /^opacity-/,
+            /^pointer-events-/,
+            /^select-/,
+            /^resize-/,
+            /^appearance-/,
+            /^cursor-/,
+            /^align-/,
+            /^justify-/,
+            /^items-/,
+            /^content-/,
+            /^self-/,
+          ],
+          "Material-UI": [/^Mui/, /^makeStyles/],
+          Bootstrap: [
+            /^btn-/,
+            /^col-/,
+            /^d-/,
+            /^container/,
+            /^row-/,
+            /^navbar/,
+            /^card-/,
+            /^alert-/,
+            /^badge-/,
+            /^breadcrumb-/,
+            /^carousel-/,
+            /^dropdown-/,
+            /^form-/,
+            /^input-/,
+            /^modal-/,
+            /^nav-/,
+            /^pagination-/,
+            /^popover-/,
+            /^progress-/,
+            /^table-/,
+            /^tooltip-/,
+            /^visible-/,
+            /^sr-/,
+            /^text-muted/,
+          ],
+          "ShadCN/UI": [/^shadcn-/],
+        };
+
+        const elements = document.querySelectorAll("*");
+        const detectedLibraries = {};
+
+        elements.forEach((element) => {
+          try {
+            const classes = element?.className?.split(" ") ?? [];
+            for (const lib in libraries) {
+              libraries[lib].forEach((regex) => {
+                classes.forEach((className) => {
+                  if (regex.test(className)) {
+                    detectedLibraries[lib] = (detectedLibraries[lib] || 0) + 1;
+                  }
+                });
+              });
+            }
+          } catch {}
+        });
+
+        const results = Object.entries(detectedLibraries)
+          .map(([lib, count]) => {
+            return { library: lib, count: count };
+          })
+          .sort((a, b) => b.count - a.count);
+
+        if (results.length > 0) {
+          chrome.runtime.sendMessage({
+            action: "css-framework-detected",
+            data: { results },
+          });
+        }
+
+        // colors and fonts =====================================
         const backgroundColors = new Set();
         const textColors = new Set();
         const borderColors = new Set();
@@ -67,6 +162,17 @@ async function startup() {
     console.error("No active tab found or tab ID is undefined");
   }
 }
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === "css-framework-detected") {
+    const { results } = message.data;
+    if (results.length > 0) {
+      document.getElementById("css-framework").innerHTML = results
+        .map((result) => `<li>${result.library}</li>`)
+        .join("");
+    }
+  }
+});
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "colors") {

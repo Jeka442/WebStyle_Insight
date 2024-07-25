@@ -99,6 +99,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         divContainer.appendChild(img);
         document.getElementById("container").appendChild(divContainer);
       }
+    } else {
+      document.getElementById("downloadAll").remove();
     }
   }
 });

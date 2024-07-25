@@ -18,6 +18,18 @@ h1 {
   font-size: 70px;
 }
 
+#up-bar-container {
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#css-framework {
+  margin: 0;
+}
+
 #container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;

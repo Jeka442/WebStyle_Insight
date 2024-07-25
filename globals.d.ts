@@ -4,4 +4,5 @@ interface Window {
 
 interface Object {
   values: any;
+  entries: any;
 }

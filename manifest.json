@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "WebStyle Insight",
   "version": "1.0",
-  "description": "test web page ui",
+  "description": "providing detailed insights into website design elements",
   "permissions": ["activeTab", "scripting", "downloads", "contextMenus"],
   "icons": {
     "16": "assets/icon16.png",

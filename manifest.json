@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "uiTester",
+  "name": "WebStyle Insight",
   "version": "1.0",
   "description": "test web page ui",
   "permissions": ["activeTab", "scripting", "downloads", "contextMenus"],

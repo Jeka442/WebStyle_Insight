@@ -244,10 +244,6 @@ function displayColor(color, id) {
   divContainer.style.cssText = `
       color: ${isBright(color) ? "black" : "white"};
       background-color: ${color};
-      padding: 5px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
     `;
   divContainer.addEventListener("click", function () {
     navigator.clipboard.writeText(color);
